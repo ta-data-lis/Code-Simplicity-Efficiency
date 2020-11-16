@@ -167,3 +167,33 @@ if (not a == 'zero' and not a == 'one' and not a == 'two' and not a == 'three' a
     print("I am not able to answer this question. Check your input.")
 
 print("Thanks for using this calculator, goodbye :)")
+
+
+#My proposal:
+    
+print('Welcome to this calculator!')
+print('It can add and subtract whole numbers from zero to five')
+a = input('Please choose your first number (zero to five): ')
+b = input('What do you want to do? plus or minus: ')
+c = input('Please choose your second number (zero to five): ')
+
+library = {"Zero":0,"one":1,"two":2,"three":3,"four":4,"five":5}
+output = {"0":"Zero","1":"one","2":"two","3":"three","4":"four","5":"five","6":"six","7":"seven","8":"eight","9":"nine","10":"ten"}
+list1 = ["one","two","three","four","five"]
+
+def calculator(a,b,c):
+    calculatorA = library.get(a)
+    calculatorB = library.get(c)
+    if a in list1 and c in list1 and b == "plus":
+        total = str(calculatorA + calculatorB)
+        return a + " "+"plus"+" "+ c +" "+"equals"+" "+output[total]
+    elif a in list1 and c in list1 and b == "minus":
+        total1 = str(calculatorA - calculatorB)
+        return a + " "+"minus"+" "+ c +" "+"equals"+" "+output[total1]
+    else:
+        return "I am not able to answer this question. Check your input."
+   
+    
+print(calculator(a,b,c))
+print("Thanks for using this calculator, goodbye :)")
+
