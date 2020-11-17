@@ -28,27 +28,22 @@ def multiply(x,y):
 
 while True:
     operation = input('What do you want to do? Type + to add, - to substract, * to multiply, / to divide or exit to exit the calculator: ')
-
-    if operation == '+':
-        x = input('Please choose your first number: ')
-        y = input('Please choose your second number: ')
-        print(int(x), '+', int(y), '=', add(int(x),int(y)))
-    elif operation == '-':
-        x = input('Please choose your first number: ')
-        y = input('Please choose your second number: ')
-        print(x, '-', y, '=', substract(int(x),int(y)))
-    elif operation == '*':
-        x = input('Please choose your first number: ')
-        y = input('Please choose your second number: ')        
-        print(x, '*', y, '=', multiply(int(x),int(y)))
-    elif operation == '/':
-        x = input('Please choose your first number: ')
-        y = input('Please choose your second number: ')
-        print(x, '/', y, '=', divide(int(x),int(y)))
-    elif operation == 'exit':
+    if operation == 'exit':
         print("Thanks for using this calculator, goodbye :)")
         break
+    elif operation in ('+','-','/','*'):  
+        x = input('Please choose your first number: ')
+        y = input('Please choose your second number: ')
+        if operation == '+':
+            print(int(x), '+', int(y), '=', add(int(x),int(y)))
+        elif operation == '-':
+            print(x, '-', y, '=', substract(int(x),int(y)))
+        elif operation == '*':       
+            print(x, '*', y, '=', multiply(int(x),int(y)))
+        elif operation == '/':
+            print(x, '/', y, '=', divide(int(x),int(y)))
     else:
         print("I am not able to answer this question. Check your input.")
         continue
+
         
