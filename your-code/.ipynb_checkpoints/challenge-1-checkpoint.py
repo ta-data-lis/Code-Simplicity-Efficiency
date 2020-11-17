@@ -28,8 +28,6 @@ if a == 'zero' and b == 'plus'  and c == 'four':
 if a == 'zero' and b == 'plus'  and c == 'five':
     print("zero plus five equals five")
 if a == 'one' and b == 'plus'  and c == 'zero':
-    
-    
     print("one plus zero equals one")
 if a == 'one' and b == 'plus'  and c == 'one':
     print("one plus one equals two")
