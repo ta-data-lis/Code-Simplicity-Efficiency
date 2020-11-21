@@ -7,32 +7,42 @@ The code is functional but has a lot of room for improvement. Use what you have 
 about simple and efficient code, refactor the code.
 """
 
-def RandomStringGenerator(l=12, a=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9']):
-    p = 0
-    s = ''
-    while p<l:
-        import random
-        s += random.choice(a)
-        p += 1
-    return s
 
-def BatchStringGenerator(n, a=8, b=12):
-    r = []
-    for i in range(n):
-        c = None
-        if a < b:
-            import random
-            c = random.choice(range(a, b))
-        elif a == b:
-            c = a
-        else:
-            import sys
-            sys.exit('Incorrect min and max string lengths. Try again.')
-        r.append(RandomStringGenerator(c))
+import string
+import random
+
+# we generate a random number from the max and min lengths given
+# with that length, we select a random string
+def RandomStringGenerator(a,b,n):
+    length = random.randint(a, b)
+    letters_and_numbers = list(string.ascii_lowercase + string.digits)
+    r = list()
+    while len(r) < n:
+        r.append(''.join([random.choice(letters_and_numbers) for i in range(length)]))
     return r
 
-a = input('Enter minimum string length: ')
-b = input('Enter maximum string length: ')
-n = input('How many random strings to generate? ')
+#  by creating this function, we're storing every variable introduced, checking that it is an integrer and raising an error if it's not.
+def ChooseNumber(x):
+    while True:
+        try:
+            a = int(input(x))
+            break
+        except ValueError:
+            print('You must input an integrer, try again')
+            continue
+    return a
+# we start with a minimum bigger than a maximum to ensure that the while loop always happens
+a = 100
+b = 0
+# the while loop ensures that the minimum is always lower than the maximum
+while a > b:        
+        a = ChooseNumber('Enter minimum string length: ')
+        b = ChooseNumber('Enter maximum string length: ')
+        if a > b:
+            print('Your maximum string length is smaller than your minimum,please try again')
+n = ChooseNumber('How many random strings to generate? ')
 
-print(BatchStringGenerator(int(n), int(a), int(b)))
+print(RandomStringGenerator(a,b,n))
+
+
+

@@ -12,19 +12,33 @@ The following function shows one way to solve the problem but the code is not id
 Refactor the code based on what you have learned about code simplicity and efficiency.
 """
 
+import time
+
 def my_function(X):
+
+#     solutions = [[x,y,z] for x in range(5, X) for y in range(4, X) for z in range(3, X) if (x*x==y*y+z*z)]
+
+#    After testing the time it takes with list comprehension, it's less efficient than the original option
+# What is the maximal length of the triangle side? Enter a number: 150
+# The longest side possible is 149
+# --- 2.3982136249542236 seconds ---
+# What is the maximal length of the triangle side? Enter a number: 150
+# The longest side possible is 149
+# --- 2.075399875640869 seconds ---
+
     solutions = []
     for x in range(5, X):
         for y in range(4, X):
             for z in range(3, X):
                 if (x*x==y*y+z*z):
                     solutions.append([x, y, z])
-    m = 0
-    for solution in solutions:
-        if m < max(solution):
-            m = max(solution)
-    return m
+    return solutions[-1][0]
+
+start_time = time.time()
 
 X = input("What is the maximal length of the triangle side? Enter a number: ")
 
 print("The longest side possible is " + str(my_function(int(X))))
+
+
+print("--- %s seconds ---" % (time.time() - start_time))
