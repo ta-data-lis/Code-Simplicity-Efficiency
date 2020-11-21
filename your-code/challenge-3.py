@@ -14,31 +14,19 @@ Refactor the code based on what you have learned about code simplicity and effic
 
 import time
 
-def my_function(X):
+def my_function():
+    X = int(input("What is the maximal length of the triangle side? Enter a number: "))
+    solutions = [[x,y,z] for x in range(5, X) for y in range(4, X) for z in range(3, X) if (x*x==y*y+z*z)]
 
-#     solutions = [[x,y,z] for x in range(5, X) for y in range(4, X) for z in range(3, X) if (x*x==y*y+z*z)]
-
-#    After testing the time it takes with list comprehension, it's less efficient than the original option
-# What is the maximal length of the triangle side? Enter a number: 150
-# The longest side possible is 149
-# --- 2.3982136249542236 seconds ---
-# What is the maximal length of the triangle side? Enter a number: 150
-# The longest side possible is 149
-# --- 2.075399875640869 seconds ---
-
-    solutions = []
-    for x in range(5, X):
-        for y in range(4, X):
-            for z in range(3, X):
-                if (x*x==y*y+z*z):
-                    solutions.append([x, y, z])
     return solutions[-1][0]
 
 start_time = time.time()
 
-X = input("What is the maximal length of the triangle side? Enter a number: ")
 
-print("The longest side possible is " + str(my_function(int(X))))
+
+
+
+print("The longest side possible is " + str(my_function()))
 
 
 print("--- %s seconds ---" % (time.time() - start_time))
