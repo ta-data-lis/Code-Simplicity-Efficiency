@@ -12,19 +12,19 @@ The following function shows one way to solve the problem but the code is not id
 Refactor the code based on what you have learned about code simplicity and efficiency.
 """
 
-def my_function(X):
+def triangle_side(X):
     solutions = []
-    for x in range(5, X):
-        for y in range(4, X):
-            for z in range(3, X):
-                if (x*x==y*y+z*z):
-                    solutions.append([x, y, z])
-    m = 0
-    for solution in solutions:
-        if m < max(solution):
-            m = max(solution)
-    return m
+    #pytagoras: a²+b²=c²
+    #search lenght of c between 5 (preset minimum) and given value:
+    for c in range(5, X):
+        for a in range(4, X):
+            for b in range(3, X):
+                # only return c if pytagoras formula is met
+                if c**2 == a**2+b**2:
+                    solutions.append(c)
+    #only return the maximum value of possible c's
+    return max(solutions)
 
-X = input("What is the maximal length of the triangle side? Enter a number: ")
+X = input("What is the maximal length of the triangle side? Enter a number larger than 5: ")
 
-print("The longest side possible is " + str(my_function(int(X))))
+print(f"The longest side possible is {triangle_side(int(X))}")

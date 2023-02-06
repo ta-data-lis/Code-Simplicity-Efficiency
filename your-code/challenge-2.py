@@ -6,33 +6,30 @@ the strings being generated.
 The code is functional but has a lot of room for improvement. Use what you have learned
 about simple and efficient code, refactor the code.
 """
+import sys, random, string
 
-def RandomStringGenerator(l=12, a=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9']):
-    p = 0
-    s = ''
-    while p<l:
-        import random
-        s += random.choice(a)
-        p += 1
-    return s
+def RandomStringGenerator(length=12, a=string.ascii_lowercase+string.digits):
+    #create a list  of random values of the right length and turn it into a string
+    return ''.join([random.choice(a) for i in range(length)])
 
-def BatchStringGenerator(n, a=8, b=12):
-    r = []
-    for i in range(n):
-        c = None
-        if a < b:
-            import random
-            c = random.choice(range(a, b))
-        elif a == b:
-            c = a
+def BatchStringGenerator(num, min_len=8, max_len=12):
+    res_list = []
+    #loop over every random string to generate
+    for i in range(num):
+        #set the length, if possible by a random factor, else equal given value else error
+        if min_len < max_len:
+            rand_len = random.choice(range(min_len, max_len))
+        elif min_len == max_len:
+            rand_len = min_len
         else:
-            import sys
             sys.exit('Incorrect min and max string lengths. Try again.')
-        r.append(RandomStringGenerator(c))
-    return r
+        #create random string with this given length
+        res_list.append(RandomStringGenerator(rand_len))
+    return res_list
 
-a = input('Enter minimum string length: ')
-b = input('Enter maximum string length: ')
-n = input('How many random strings to generate? ')
+if __name__ == '__main__':
+    a = input('Enter minimum string length: ')
+    b = input('Enter maximum string length: ')
+    n = input('How many random strings to generate? ')
 
-print(BatchStringGenerator(int(n), int(a), int(b)))
+    print(BatchStringGenerator(int(n), int(a), int(b)))
