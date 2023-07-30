@@ -9,6 +9,51 @@ The code is very long and messy. Refactor it according to what you have learned 
 code simplicity and efficiency.
 """
 
+class DumbCalculator():
+    def __init__(self):
+        self.number = {'zero':0, 'one':1, 'two':2, 'three':3, 'four':4, 'five':5}
+        self.operation = ['plus', 'minus']
+    
+    def start(self):
+        print('Welcome to this very weird calculator')
+
+        is_valid = False
+        while not is_valid:
+            self.a = (input('Please choose your first number (zero to five): ')).strip()
+            self.b = (input('What do you want to do? plus or minus: ')).strip()
+            self.c = (input('Please choose your second number (zero to five): ')).strip()
+
+            result = self.check_input(self.a, self.b, self.c)
+            if result is not None:
+                print(f'{self.a} {self.b} {self.c} equals {result}')
+                is_valid = True
+            else:
+                print('I am not able to answer this question. Check your input.')
+        print('Thanks for using this calculator, goodbye :)')
+        
+
+    def check_input(self, a, b, c):
+        if (a in self.number.keys()) and (c in self.number.keys()):
+            if b in self.operation:
+                return self.calculation(self.number[a], b, self.number[c])  
+        else:
+            return None
+    
+    def calculation(self, a, b, c):
+        res = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
+        if b == 'plus':
+            return res[(a+c)]
+        else:
+            if a>=c:
+                return res[abs(a-c)]
+            else:
+                return f'negative {res[abs(a-c)]}'
+
+if __name__ == '__main__':
+    calc = DumbCalculator()
+    calc.start()
+
+"""
 print('Welcome to this calculator!')
 print('It can add and subtract whole numbers from zero to five')
 a = input('Please choose your first number (zero to five): ')
@@ -167,3 +212,4 @@ if (not a == 'zero' and not a == 'one' and not a == 'two' and not a == 'three' a
     print("I am not able to answer this question. Check your input.")
 
 print("Thanks for using this calculator, goodbye :)")
+"""
